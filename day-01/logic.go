@@ -1,8 +1,7 @@
 package main
 
-
 func CalculateFuel(fuel int) int {
-	return  int(fuel / 3) - 2
+	return int(fuel/3) - 2
 }
 
 func CalculateFuelRecursive(fuel int) int {

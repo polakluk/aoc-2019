@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"strconv"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -18,6 +18,6 @@ func main() {
 		resultRecursive += CalculateFuelRecursive(val)
 	}
 
-	fmt.Println("Original fuel: %d", resultOriginal)
-	fmt.Println("Recursive fuel: %d", resultRecursive)
+	fmt.Printf("Original fuel: %d", resultOriginal)
+	fmt.Printf("Recursive fuel: %d", resultRecursive)
 }
