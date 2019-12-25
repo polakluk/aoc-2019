@@ -17,7 +17,8 @@ func ParseProgramCode(program string) []int {
 
 // RestartCommands Restart commands to initial state
 func RestartCommands(commands []int) []int {
-	newCommands := commands
+	newCommands := make([]int, len(commands))
+	copy(newCommands, commands)
 	newCommands[1] = 12
 	newCommands[2] = 2
 
@@ -40,5 +41,39 @@ func RunCommands(commands []int) {
 			commands[destination] = op1 * op2
 		}
 		idx += 4
+
+		if idx+3 >= len(commands) || idx >= len(commands) {
+			return
+		}
 	}
+}
+
+//NounVerbPair Pair of noun and verb
+type NounVerbPair struct {
+	noun int
+	verb int
+}
+
+// FindNounVerb Tries to find a noun and a verb
+func FindNounVerb(commands []int) NounVerbPair {
+	result := NounVerbPair{0, 0}
+	keepLooking := true
+
+	for noun := 0; noun < 100 && keepLooking; noun++ {
+		for verb := 0; verb < 100 && keepLooking; verb++ {
+			newCommands := make([]int, len(commands))
+			copy(newCommands, commands)
+
+			newCommands[1] = noun
+			newCommands[2] = verb
+			RunCommands(newCommands)
+			if newCommands[0] == 19690720 {
+				keepLooking = false
+				result.noun = noun
+				result.verb = verb
+			}
+		}
+	}
+
+	return result
 }
